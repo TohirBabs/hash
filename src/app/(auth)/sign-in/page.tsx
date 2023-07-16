@@ -1,6 +1,6 @@
 import { SignIn } from "@/components/SignIn";
 import { buttonVariants } from "@/components/ui/Button";
-import { cn } from "@/utils";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { FC } from "react";
 

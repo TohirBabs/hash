@@ -4,8 +4,8 @@ import { StatusProgress } from "./StatusProgress";
 
 export const Pfp = () => {
   return (
-    <div className="relative flex items-center justify-center overflow-hidden">
-      <div className="w-12 h-12 absolute bg-black rounded-full">
+    <div className="relative flex items-center justify-center ">
+      <div className="w-11 h-11 absolute bg-black rounded-full overflow-hidden">
         <Image
           src="/assets/images/selfie.jpg"
           alt="profile picture"

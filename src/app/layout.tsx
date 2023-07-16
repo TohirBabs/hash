@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Comfortaa } from "next/font/google";
 import { Navbar } from "../components/Navbar";
+import { Toaster } from "@/components/ui/toaster";
 
 const comfortaa = Comfortaa({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
         <main className="container max-w-7xl mx-auto h-full pt-12">
           {children}
         </main>
+        <Toaster />
       </body>
     </html>
   );

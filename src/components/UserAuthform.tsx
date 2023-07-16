@@ -3,17 +3,25 @@ import { FC, useState } from "react";
 import { Button } from "./ui/Button";
 import { signIn } from "next-auth/react";
 import { Icons } from "./icons";
+import { useToast } from "@/hooks/use-toast";
 
 interface userAuthProps extends React.HtmlHTMLAttributes<HTMLDivElement> {}
 
 const UserAuthform: FC<userAuthProps> = (className, ...props) => {
   const [isloading, setIsLoading] = useState(false);
+  const { toast } = useToast();
   const loginWiihGoogle = async () => {
     setIsLoading(true);
     try {
+      throw new Error("Something went wrong");
       await signIn("google");
     } catch (error) {
       console.log(error);
+      toast({
+        title: "Error",
+        description: "Something went wrong",
+        variant: "destructive",
+      });
     } finally {
       setIsLoading(false);
     }

@@ -1,6 +1,8 @@
+import { cn } from "@/utils";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Comfortaa } from "next/font/google";
+import { Navbar } from "../components/Navbar";
 
 const comfortaa = Comfortaa({ subsets: ["latin"] });
 
@@ -15,9 +17,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={comfortaa.className}>
-        <main>{children}</main>
+    <html
+      lang="en"
+      className={cn("bg-white text-slate-900", comfortaa.className)}
+    >
+      <body className="min-h-screen pt-12 bg-slate-50">
+        <Navbar />
+        <main className="container max-w-7xl mx-auto h-full pt-12">
+          {children}
+        </main>
       </body>
     </html>
   );

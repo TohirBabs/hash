@@ -9,7 +9,7 @@ export const SignIn = () => {
       <div className="flex flex-col space-y-2 text-center">
         <Icons.logo className="mx-auto w-8 h-8 sm:h-6 sm:w-6" />
         <h1 className="text-2xl font-bold tracking-tight">Sign in to hash</h1>
-        <p className="text-sm max-w-xs mx-auto">
+        <p className="text-xs max-w-xs mx-auto">
           By signing in, you agree to hash&#39;s user agreement and privacy
           policy.
         </p>

@@ -13,7 +13,6 @@ const UserAuthform: FC<userAuthProps> = (className, ...props) => {
   const loginWiihGoogle = async () => {
     setIsLoading(true);
     try {
-      throw new Error("Something went wrong");
       await signIn("google");
     } catch (error) {
       console.log(error);
@@ -28,12 +27,7 @@ const UserAuthform: FC<userAuthProps> = (className, ...props) => {
   };
   return (
     <div className="flex justify-center gap-4">
-      <Button
-        onClick={loginWiihGoogle}
-        isLoading={isloading}
-        size="sm"
-        // className="p-4"
-      >
+      <Button onClick={loginWiihGoogle} isLoading={isloading}>
         {isloading ? null : <Icons.google className="h-4 w-4" />}
       </Button>
     </div>

@@ -3,7 +3,7 @@ import { Icons } from "./icons";
 import Link from "next/link";
 import UserAuthform from "./UserAuthform";
 
-export const SignIn = () => {
+const SignIn = () => {
   return (
     <div className="container mx-auto flex-col justify-center space-y-6 sm:w-[400px] ">
       <div className="flex flex-col space-y-2 text-center">
@@ -27,3 +27,5 @@ export const SignIn = () => {
     </div>
   );
 };
+
+export default SignIn;

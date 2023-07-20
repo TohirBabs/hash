@@ -15,7 +15,7 @@ const UserAuthform: FC<userAuthProps> = (className, ...props) => {
     try {
       await signIn("google", { redirect: true, callbackUrl: "/" });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast({
         title: "Error",
         description: "Something went wrong",

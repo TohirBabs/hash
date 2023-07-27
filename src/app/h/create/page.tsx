@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/input";
+import { useCustomToast } from "@/hooks/use-custom-toast";
 import { toast } from "@/hooks/use-toast";
 import { CreateSubredditPayload } from "@/lib/validators/subreddit";
 import { useMutation } from "@tanstack/react-query";
@@ -13,12 +14,13 @@ type Props = {};
 const Page = (props: Props) => {
   const [input, setinput] = useState<string>("");
   const router = useRouter();
+  const { loginToast } = useCustomToast();
   const { mutate: createCommunity, isLoading } = useMutation({
     mutationFn: async () => {
       const payload: CreateSubredditPayload = {
         name: input,
       };
-      const { data } = await axios.post("/api/subreddit");
+      const { data } = await axios.post("/api/subreddit", payload);
       return data as string;
     },
     onError: (err) => {
@@ -38,9 +40,18 @@ const Page = (props: Props) => {
           });
         }
         if (err.response?.status === 401) {
-          return;
+          return loginToast();
         }
       }
+      toast({
+        title: "An error occured",
+        description: "Could not create community, please try again later",
+
+        variant: "destructive",
+      });
+    },
+    onSuccess: (data) => {
+      router.push(`/h/${data}`);
     },
   });
   return (
@@ -53,7 +64,7 @@ const Page = (props: Props) => {
         <div>
           <p className="text-lg font-medium">Name</p>
           <p className="text-xs pb-2">
-            Community names including capitalixation cannot be changed
+            Community names including capitalization cannot be changed
           </p>
           <div className="relative">
             <p className="absolute text-sm left-0 w-8 inset-y-0 grid place-items-center text-zinc-500">
@@ -70,7 +81,11 @@ const Page = (props: Props) => {
           <Button variant="subtle" onClick={() => router.back()}>
             Cancel
           </Button>
-          <Button isLoading={isLoading} onClick={() => createCommunity()}>
+          <Button
+            disabled={input.length === 0}
+            isLoading={isLoading}
+            onClick={() => createCommunity()}
+          >
             Create Community
           </Button>
         </div>
